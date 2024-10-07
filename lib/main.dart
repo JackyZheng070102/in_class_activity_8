@@ -48,13 +48,25 @@ class _SpookyHomePageState extends State<SpookyHomePage> with SingleTickerProvid
       appBar: AppBar(title: Text('Find the Correct Halloween Item!')),
       body: Stack(
         children: [
-          Center(child: Text("Tap the correct item to win!", style: TextStyle(fontSize: 24))),
+          // Background image
+          Positioned.fill(
+            child: Image.asset(
+              'lib/assets/background1.png',
+              fit: BoxFit.cover,
+            ),
+          ),
+          // Ghost image
           Positioned(
             left: random.nextDouble() * MediaQuery.of(context).size.width,
             top: _animation.value,
-            child: Icon(Icons.ghost, size: 80, color: Colors.white),
+            child: Image.asset('lib/assets/ghost.png', width: 80, height: 80),
           ),
-          // Add more floating objects
+          // Pumpkin icon
+          Positioned(
+            right: random.nextDouble() * MediaQuery.of(context).size.width,
+            bottom: _animation.value,
+            child: Icon(Icons.emoji_emotions, size: 80, color: Colors.orange),
+          ),
         ],
       ),
     );
