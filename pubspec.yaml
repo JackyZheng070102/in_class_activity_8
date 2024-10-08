@@ -25,6 +25,8 @@ flutter:
   assets:
     - lib/assets/background1.png
     - lib/assets/ghost.png
+    - lib/assets/pumpkin.png
+    - lib/assets/bat.png
     - lib/assets/sounds/spooky_music.mp3
     - lib/assets/sounds/jump_scare.wav
     - lib/assets/sounds/success_sound.wav
