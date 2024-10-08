@@ -11,8 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
-  audioplayers: ^6.1.0   # Updated to the latest version
   animated_widgets: ^1.0.0
+  audioplayers: ^6.1.0
 
 dev_dependencies:
   flutter_test:
@@ -30,3 +30,4 @@ flutter:
     - lib/assets/sounds/spooky_music.mp3
     - lib/assets/sounds/jump_scare.wav
     - lib/assets/sounds/success_sound.wav
+    - lib/assets/sounds/horror_background.mp3

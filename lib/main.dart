@@ -27,7 +27,7 @@ class _SpookyHomePageState extends State<SpookyHomePage>
   late AnimationController _controller;
   late Animation _animation;
   Random random = Random();
-  final AudioPlayer _player = AudioPlayer();
+  final AudioPlayer _backgroundPlayer = AudioPlayer(); // Background player
 
   bool _foundCorrectItem = false; // To track if the correct item is found
   final List<String> _items = ['ghost', 'pumpkin', 'bat']; // Possible items
@@ -42,24 +42,29 @@ class _SpookyHomePageState extends State<SpookyHomePage>
     )..repeat(reverse: true);
 
     _animation = Tween(begin: -50.0, end: 50.0).animate(_controller);
-    playBackgroundMusic();
+    _playBackgroundMusic(); // Start playing your spooky music
     _correctItem = _items[random.nextInt(_items.length)]; // Randomly select the correct item
   }
 
-  void playBackgroundMusic() async {
-    await _player.setSource(AssetSource('lib/assets/sounds/spooky_music.wav'));
-    _player.setReleaseMode(ReleaseMode.loop); // Loop the background music
-    await _player.resume(); // Start playing
+  Future<void> _playBackgroundMusic() async {
+    try {
+      await _backgroundPlayer.setSource(AssetSource('lib/assets/sounds/horror_background.mp3')); // Update to your horror background music path
+      _backgroundPlayer.setReleaseMode(ReleaseMode.loop); // Loop the background music
+      await _backgroundPlayer.resume(); // Start playing
+      print('Background music is playing'); // Debug print
+    } catch (e) {
+      print('Error playing background music: $e');
+    }
   }
 
   void playJumpScareSound() async {
-    await _player.setSource(AssetSource('lib/assets/sounds/jump_scare.wav'));
-    await _player.resume(); // Start playing the jump scare sound
+    await _backgroundPlayer.setSource(AssetSource('lib/assets/sounds/jump_scare.wav'));
+    await _backgroundPlayer.resume(); // Start playing the jump scare sound
   }
 
   void playSuccessSound() async {
-    await _player.setSource(AssetSource('lib/assets/sounds/success_sound.mp3'));
-    await _player.resume(); // Start playing the success sound
+    await _backgroundPlayer.setSource(AssetSource('lib/assets/sounds/success_sound.mp3'));
+    await _backgroundPlayer.resume(); // Start playing the success sound
   }
 
   void _onItemTap(String item) {
@@ -94,7 +99,7 @@ class _SpookyHomePageState extends State<SpookyHomePage>
   @override
   void dispose() {
     _controller.dispose();
-    _player.dispose();
+    _backgroundPlayer.dispose(); // Dispose of the player when done
     super.dispose();
   }
 
@@ -120,8 +125,8 @@ class _SpookyHomePageState extends State<SpookyHomePage>
                 child: item == 'ghost'
                     ? Image.asset('lib/assets/ghost.png', width: 80, height: 80)
                     : item == 'pumpkin'
-                        ? Image.asset('lib/assets/pumpkin.png', width: 80, height: 80) // Add your pumpkin image
-                        : Image.asset('lib/assets/bat.png', width: 80, height: 80), // Add your bat image
+                        ? Image.asset('lib/assets/pumpkin.png', width: 80, height: 80) // Your pumpkin image
+                        : Image.asset('lib/assets/bat.png', width: 80, height: 80), // Your bat image
               ),
             ),
           // Optionally, show a message if the correct item is found
