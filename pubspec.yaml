@@ -10,18 +10,21 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
   cupertino_icons: ^1.0.8
+  audioplayers: ^6.1.0   # Updated to the latest version
+  animated_widgets: ^1.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0   # Updated to the latest version
 
 flutter:
   uses-material-design: true
 
   assets:
-  - lib/assets/background1.png
-  - lib/assets/ghost.png
+    - lib/assets/background1.png
+    - lib/assets/ghost.png
+    - lib/assets/sounds/spooky_music.mp3
+    - lib/assets/sounds/jump_scare.wav
+    - lib/assets/sounds/success_sound.wav
